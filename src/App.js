@@ -1,24 +1,15 @@
-import logo from './logo.svg';
 import './App.css';
+import Textform from './Components/Textform';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <>
+    <span style={{ margin: '0 10px' }}></span>
+    <div className="container" my3="true">
+      <Textform heading="Enter the URL" heading1="Your Summary"></Textform>
     </div>
+    </>
   );
 }
+
 export default App;
