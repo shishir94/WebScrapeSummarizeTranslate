@@ -16,3 +16,14 @@ code {
   background-color: white;
   color: dodgerblue;
 }
+
+.language-select {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.language-heading {
+  margin-right: 10px;
+  font-size: 20px;
+}
