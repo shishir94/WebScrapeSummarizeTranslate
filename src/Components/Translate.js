@@ -8,6 +8,10 @@ export default function Translate({ text, setText }) {
         setLanguage(event.target.value);
     };
 
+    const handleChanges = (event) => {
+        setTranslatedText(event.target.value);
+    };
+
     useEffect(() => {
         async function translateText() {
             const apiKey = 'YOUR_API_KEY'; 
@@ -38,9 +42,9 @@ export default function Translate({ text, setText }) {
     return (
         <div>
             <div className='container language-select'>
-                <h3 className="language-heading">SELECT LANGUAGE</h3>
+                <h3 className="language-heading">Select Language</h3>
                 <select value={language} onChange={handleLanguageChange}>
-                <option value="en">English</option>
+                    <option value="en">English</option>
                     <option value="fr">French</option>
                     <option value="es">Spanish</option>
                     <option value="de">German</option>
@@ -50,10 +54,11 @@ export default function Translate({ text, setText }) {
                     <option value="zh-CN">Chinese (Simplified)</option>
                     <option value="ja">Japanese</option>
                     <option value="ko">Korean</option>
+                    <option value="hi">Hindi</option>
                 </select>
             </div>
             <div className="mb-3">
-                <textarea value={setTranslatedText} className="form-control" id="myBox" rows="8"></textarea>
+                <textarea value={setTranslatedText} onChange={handleChanges} className="form-control" id="myBox" rows="8"></textarea>
             </div>
         </div>
     );
