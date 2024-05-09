@@ -22,9 +22,7 @@ export default function Textform(props) {
             <div className="container my-3">
                 <h2>{props.heading1}</h2>
                 <Translate text={text} setText={setText} />
-
             </div>
-                
         </div>
     )
 }
