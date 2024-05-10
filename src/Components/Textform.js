@@ -98,15 +98,7 @@ export default function Textform(props) {
         ></textarea>
       </div>
       <div>
-        <div className="buttons my-3">
-          <button className="btn btn-primary my-3" onClick={handleGetSummary}>
-            Get Summary
-          </button>
-        </div>
-      </div>
-      <div className="container">
-        <h2>Your Summary</h2>
-        <div className="container language-select">
+      <div className="container language-select">
           <h3 className="language-heading">Select Language</h3>
           <select value={language} onChange={handleLanguageChange}>
             <option value="en">English</option>
@@ -122,6 +114,16 @@ export default function Textform(props) {
             <option value="hi">Hindi</option>
           </select>
         </div>
+      </div>
+      <div>
+        <div className="buttons my-3">
+          <button className="btn btn-primary my-3" onClick={handleGetSummary}>
+            Get Summary
+          </button>
+        </div>
+      </div>
+      <div className="container">
+        <h2>Your Summary</h2>
         <div className="mb-3">
           <textarea
             value={translatedText}
