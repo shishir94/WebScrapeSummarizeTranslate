@@ -44,10 +44,22 @@ export default function Textform(props) {
   };
 
   const handleGetSummary = () => {
-    axios.post("http://localhost:8000/chat", { prompt: text })
+    axios.post("http://localhost:8000/chat", { prompt: text, language: "en" })
       .then((res) => {
         if (res.data && res.data.message && res.data.message.content) {
-          setTranslatedText(res.data.message.content);
+          const translatedToEnglish = res.data.message.content;
+          axios.post("http://localhost:8000/chat", { prompt: translatedToEnglish, language: language })
+            .then((res) => {
+              if (res.data && res.data.message && res.data.message.content) {
+                setTranslatedText(res.data.message.content);
+              } else {
+                setTranslatedText("No valid response received.");
+              }
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+              setTranslatedText("Failed to fetch response.");
+            });
         } else {
           setTranslatedText("No valid response received.");
         }
@@ -57,6 +69,7 @@ export default function Textform(props) {
         setTranslatedText("Failed to fetch response.");
       });
   };
+  
 
   return (
     <div>
