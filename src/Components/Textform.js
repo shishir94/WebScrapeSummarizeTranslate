@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from 'axios';
+import axios from "axios";
 
 export default function Textform(props) {
   const [text, setText] = useState("Enter URL");
@@ -27,7 +27,6 @@ export default function Textform(props) {
     setLanguage(event.target.value);
   };
 
-
   const handleFocus1 = (event) => {
     if (event.target.value === "Enter your key") {
       setText1("");
@@ -44,22 +43,11 @@ export default function Textform(props) {
   };
 
   const handleGetSummary = () => {
-    axios.post("http://localhost:8000/chat", { prompt: text, language: "en" })
+    axios
+      .post("http://localhost:8000/chat", { prompt: text, language: language })
       .then((res) => {
         if (res.data && res.data.message && res.data.message.content) {
-          const translatedToEnglish = res.data.message.content;
-          axios.post("http://localhost:8000/chat", { prompt: translatedToEnglish, language: language })
-            .then((res) => {
-              if (res.data && res.data.message && res.data.message.content) {
-                setTranslatedText(res.data.message.content);
-              } else {
-                setTranslatedText("No valid response received.");
-              }
-            })
-            .catch((error) => {
-              console.error("Error:", error);
-              setTranslatedText("Failed to fetch response.");
-            });
+          setTranslatedText(res.data.message.content);
         } else {
           setTranslatedText("No valid response received.");
         }
@@ -69,7 +57,6 @@ export default function Textform(props) {
         setTranslatedText("Failed to fetch response.");
       });
   };
-  
 
   return (
     <div>
@@ -98,20 +85,13 @@ export default function Textform(props) {
         ></textarea>
       </div>
       <div>
-      <div className="container language-select">
+        <div className="container language-select">
           <h3 className="language-heading">Select Language</h3>
           <select value={language} onChange={handleLanguageChange}>
             <option value="en">English</option>
-            <option value="fr">French</option>
-            <option value="es">Spanish</option>
-            <option value="de">German</option>
-            <option value="it">Italian</option>
-            <option value="pt">Portuguese</option>
-            <option value="ru">Russian</option>
-            <option value="zh-CN">Chinese (Simplified)</option>
-            <option value="ja">Japanese</option>
-            <option value="ko">Korean</option>
             <option value="hi">Hindi</option>
+            <option value="ta">Tamil</option>
+            <option value="te">Telugu</option>
           </select>
         </div>
       </div>
