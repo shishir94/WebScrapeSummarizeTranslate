@@ -44,7 +44,7 @@ export default function Textform(props) {
 
   const handleGetSummary = () => {
     axios
-      .post("http://localhost:8000/chat", { prompt: text, language: language })
+      .post("http://localhost:8000/chat", { apikey: text1, prompt: text, language: language })
       .then((res) => {
         if (res.data && res.data.message && res.data.message.content) {
           setTranslatedText(res.data.message.content);
