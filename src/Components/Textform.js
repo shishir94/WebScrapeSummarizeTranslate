@@ -18,7 +18,7 @@ export default function Textform(props) {
   };
 
   const handleBlur = (event) => {
-    if (event.target.value.trim() === "") {
+    if (event.target.value === "") {
       setText("Enter URL");
     }
   };
@@ -34,7 +34,7 @@ export default function Textform(props) {
   };
 
   const handleBlur1 = (event) => {
-    if (event.target.value.trim() === "") {
+    if (event.target.value === "") {
       setText1("Enter your key");
     }
   };
