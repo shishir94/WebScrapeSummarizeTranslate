@@ -6,6 +6,7 @@ export default function Textform(props) {
   const [text1, setText1] = useState("Enter your key");
   const [translatedText, setTranslatedText] = useState("");
   const [language, setLanguage] = useState("en");
+  const [loading, setLoading] = useState(false); 
 
   const handleOnChange = (event) => {
     setText(event.target.value);
@@ -38,11 +39,13 @@ export default function Textform(props) {
       setText1("Enter your key");
     }
   };
+
   const handleOnChange1 = (event) => {
     setText1(event.target.value);
   };
 
   const handleGetSummary = () => {
+    setLoading(true); 
     axios
       .post("http://localhost:8000/chat", { apikey: text1, url: text, language: language })
       .then((res) => {
@@ -55,6 +58,9 @@ export default function Textform(props) {
       .catch((error) => {
         console.error("Error:", error);
         setTranslatedText("Failed to fetch response.");
+      })
+      .finally(() => {
+        setLoading(false); 
       });
   };
 
@@ -105,13 +111,17 @@ export default function Textform(props) {
       <div className="container">
         <h2>Your Summary</h2>
         <div className="mb-3">
-          <textarea
-            value={translatedText}
-            className="form-control"
-            id="summaryOutput"
-            rows="8"
-            readOnly
-          ></textarea>
+          {loading ? (
+            <p>Loading Please wait...</p>
+          ) : (
+            <textarea
+              value={translatedText}
+              className="form-control"
+              id="summaryOutput"
+              rows="8"
+              readOnly
+            ></textarea>
+          )}
         </div>
       </div>
     </div>
